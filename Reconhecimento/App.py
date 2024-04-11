@@ -3,7 +3,7 @@ import Reconhecimento as rf
 
 print("---FalconTech----")
 print("Oque deseja fazer: ")
-i = int(input("1-Reconhecimento \n2-Cadastramento\n"))
+i = int(input("1-Reconhecimento \n2-Cadastro\n"))
 
 if i == 1:
     rf.reconhecimentofacial()
