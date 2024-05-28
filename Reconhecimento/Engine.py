@@ -20,17 +20,19 @@ def get_nomes():
         linha = linha.strip() #remove a quebra de linha
         nomes.append(linha) #Coloca na variavel nomes
     arqnomes.close()
-
     arqfotos = open("fotos.txt","r") 
     linhasfoto = arqfotos.readlines()
     for linha in linhasfoto:
         linha = linha.strip()
         fotos.append(linha + ".png")
     arqfotos.close()
-    for nome in nomes: #linka nome com foto
-        for foto in fotos:
+    nomepos = 0
+    fotopos = 0
+    for foto,nome in zip (fotos,nomes): #linka nome com foto
             reconhecido = reconhece(foto)
-            if reconhecido [0]:
+            if reconhecido [0] and nomepos == fotopos:
                 rostos_conhecidos.append(reconhecido[1][0])
                 nomes_conhecidos.append(nome)
+                nomepos+=1
+            fotopos += 1      
     return rostos_conhecidos, nomes_conhecidos

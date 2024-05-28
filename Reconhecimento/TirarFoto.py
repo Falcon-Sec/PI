@@ -1,4 +1,6 @@
 import cv2 as cv
+import numpy as np
+import urllib.request
 
 def get_foto():
     #ler quantas linhas tem a lista nomes
@@ -6,13 +8,16 @@ def get_foto():
     nomes = quant.readlines()
     num_linhas = len(nomes)
 
-    cam = cv.VideoCapture(0)
+    url = 'http://192.168.172.168/cam-hi.jpg'
+    cv.namedWindow("camera",cv.WINDOW_AUTOSIZE)
+    
     while True:
-        ret, frame = cam.read()
-        cv.imshow('camera', frame)
+        img= urllib.request.urlopen(url)
+        imgnp=np.array(bytearray(img.read()),dtype=np.uint8)
+        cam = cv.imdecode(imgnp,-1)
+        cv.imshow('camera', cam)
         k = cv.waitKey(5)
         if k == 27:
             break
-        cv.imwrite(f"{num_linhas}.png", frame)
-    cam.release()
+        cv.imwrite(f"{num_linhas}.png", cam)
     cv.destroyAllWindows()
