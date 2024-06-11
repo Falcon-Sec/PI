@@ -1,7 +1,7 @@
 import Cadastro as cd
 import Reconhecimento as rf
 
-print("---FalconTech----")
+print("----FalconTech----")
 print("Oque deseja fazer: ")
 i = int(input("1-Reconhecimento \n2-Cadastro\n"))
 
